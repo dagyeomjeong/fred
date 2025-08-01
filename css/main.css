@@ -1,0 +1,172 @@
+@charset "utf-8";
+
+:root {
+       --main-color :#e70017;
+       --sub-font: 'Mont', sans-serif;
+}
+
+
+body{font-family: "pretendard",sans-serif;font-size: 1.6rem; line-height: 1.5; color: #000;}
+.inner{max-width: 1640px; margin: 0 auto; padding: 0 20px;}
+
+/* header */
+#header{position: absolute; left: 0;top: 0; width: 100%; z-index: 2; padding-top: 20px;  } 
+#header .inner{display: flex;justify-content: space-between; align-items: center; }
+#header h1 img{ width: 200px; } /* 너비만 주면 높이는 비율에 맞춤 자동 */
+#header .gnb {display: flex; }
+#header .gnb>li>a{display: block;padding: 10px 40px; color: #fff; font-size: 2rem; }
+
+/* 2차메뉴 */
+#header .gnb>li {position: relative;}
+#header .gnb .depth2 {position: absolute;left: calc(50% - 100px); width: 200px;background: #fff; border-radius: 10px; padding: 20px; display: none; } /* 50% 하고 transform써도 됌 두가지 다 알기! */
+#header .gnb .depth2 li a {display: block; padding: 3px 0; font-weight: 500;}/* 여기서 패딩으로 값 주면 됌!! 블럭 처리 했으니까!! */
+#header .gnb li:hover .depth2 {display: block;}
+#header .gnb> li .depth2 li a:hover {color: var(--main-color)}
+
+#header .btn_ham{display: none; background: transparent; border: 0; cursor: pointer; }
+
+@media (max-width:1000px) { /* 테블릿 사이즈부턴 터치니까 hover안 먹으니까 거기서부터 생각 */
+       #header h1 img{ width: 150px; }
+       #header .gnb{display: none;}
+       #header .btn_ham{display: block;}
+}
+
+
+/* banner */
+.banner{color: #fff; margin: 0;}
+.banner .banner1 {position: relative; height: 100vh; background: url(../images/banner1.png)no-repeat center / cover; }
+.banner .banner2 {position: relative; height: 100vh; background: url(../images/banner2.jpg)no-repeat center / cover; }
+.banner .banner3 {position: relative; height: 100vh; background: url(../images/banner3.png)no-repeat center / cover; }
+.banner .banner_txt{ position: absolute; left: 10.416vw;bottom: 10.416vw; } /* vw화면 너비에 맞추는 것 200/1920*100  (200은 주려는 수치값)*/ 
+.banner .banner_txt h3{font-size: 7rem; line-height: 1.2; padding-bottom: 20px; }
+.banner .banner_txt span{font-size: 3rem;}
+
+.banner .swiper-pagination { top: auto; bottom: 5vw; max-width: 1600px; left: 50%; transform: translateX(-50%); height: 2px; width: calc(100% - 40px);} /* 얘도 유동적인 사이즈로 주기 vw 원래 width값은 100% 이나, 화면을 줄일 때 좌우에 20을 제외하고 줄어들게.  */
+.banner .swiper-pagination-progressbar-fill {background:#fff;} /* 개발자 도구에서 어떤이름에 어떤 색이 들어간건지 확인 후 수정 하려면 긁어와서 변경 하면 됌 */
+
+
+@media (max-width:1300px) {
+       .banner .banner_txt h3{font-size: 5rem; }
+       .banner .banner_txt span{font-size: 2.5rem;}
+}
+
+@media (max-width:800px) {
+       .banner .banner1 {background: url(../images/banner1_mo.png)no-repeat center / cover; }
+       .banner .banner2 {background: url(../images/banner2_mo.png)no-repeat center / cover; }
+       .banner .banner3 {background: url(../images/banner3_mo.png)no-repeat center / cover; }
+       .banner .banner_txt h3{font-size: 3.5rem; }
+       .banner .banner_txt span{font-size: 2rem;}
+} /* 모바일이랑 데스크 탑 용 이미지를 따로 만들어서 변경 하는 경우 */
+
+
+
+section{margin: 200px 0;}
+h2{text-transform: capitalize; font-size: 6rem; font-family: var(--sub-font);line-height: 1.2; }/* text-transform: capitalize; 단어의 첫 글자만 대문자! */
+h2 span{color: var(--main-color);}
+.btn_more a{ display: inline-block;padding: 10px 100px; background: #000; color: #fff; border-radius: 50px;}
+
+/* menu */
+.menu {text-align: center;}
+.menu .menu_list {margin-top:50px; }
+.menu .menu_list ul li {transition: opacity 0.5s, transform 0.5s; transform: scale(0.8); opacity: 0.5;} /* 전체 x와y가 80%로 줄어듬 all이라고 하면 새로고침 시 펑 하고 나오는 느낌 들어서 각각 따로 지정! */
+.menu .menu_list ul li.swiper-slide-active {transform: scale(1); opacity: 1; } /* 이게 활성화 된 슬라이드 임 li랑 저 이름사이에 띄우면 안 됌!!  scal(1)=100% 원래 값!*/
+.menu .menu_list ul li img {width: 100%;}
+.menu .menu_list ul li strong {display: block; font-size: 3rem; padding: 10px 0;}
+.menu .menu_list ul li span{display: block;font-size: 1.8rem; color: var(--main-color); font-weight: 700; }
+
+
+@media (max-width:800px) {
+       .menu .menu_list ul li strong {font-size: 2rem;}
+.menu .menu_list ul li span{font-size: 1.6rem;}
+}
+
+/* story */
+.story .inner {display: grid;align-items: center; grid-template-columns: 60% 40%; gap: 100px;}
+.story .story_video video{ width: 100%; border-radius: 30px; }
+
+
+@media (max-width:1265px) {
+       .story .inner {grid-template-columns: 100%; gap: 50px;}
+       .story .story_video { order: 2;}
+       .story .story_txt {order: 1; text-align: center;}
+}
+
+/* event */
+.event .inner{position: relative; display: grid; grid-template-columns: 400px auto;}
+.event .event_title {position: sticky; top: 0;  height: 400px; } /* sticky를 주기 위함 - 당연히 기준 줘야 함 */
+.event .event_list {display: grid; gap: 50px; grid-template-columns: 1fr 1fr 1fr; } 
+.event .event_list img{width: 100%;}
+.event .event_list .event_col:nth-child(odd) {margin-top: 100px; }
+.event .event_list .event_con {border: 1px solid #eee; border-radius: 30px; overflow: hidden; margin-bottom: 50px; }
+.event .event_list .event_con dl{padding: 30px; } 
+.event .event_list .event_con dl dt{font-size: 2rem;font-weight: 700;}
+.event .event_list .event_con dl dd{ color: #999; padding-top: 10px; }
+.event .btn_more{text-align: center;}
+
+@media (max-width:1500px) {
+       .event .inner{ grid-template-columns:1fr; }
+       .event .event_title {position: static; height: auto; text-align: center;margin-bottom: 30px; } 
+       .event .event_title br{display: none;}
+}
+@media (max-width:1000px) {
+       .event .event_list { grid-template-columns: 1fr 1fr; } 
+       .event .event_list .event_col:last-child {display: none;}
+}
+@media (max-width:650px) {
+       .event .inner{padding: 0 50px;}
+       .event .event_list { grid-template-columns: 1fr; } 
+       .event .event_list .event_col:nth-child(2) {display: none;}
+       .event .event_list .event_col:nth-child(odd) {margin-top: 0; }/* margin-top 해제: 0 */
+}
+
+
+/* search */
+.search {background: url(../images/search_bg.png)no-repeat center / cover; padding: 200px 20px; margin: 0 auto; }
+.search h2{text-align: center; color: #fff; margin-bottom: 30px; }
+.search .inner {max-width: 800px; background: #fff; border-radius: 100px; overflow: hidden; padding: 5px; }
+.search .input_box{display: grid;grid-template-columns: auto 60px;}
+.search input {border: 0; height: 60px; font-family: inherit; font-size: 2rem;}
+.search input[type="text"] {padding-left: 20px; outline: none;} /* input text 박스 특유의 까만 선 없앰  outline: none;} */
+.search input[type="submit"] {width: 60px;height: 60px; background:#000 url(../images/btn_search.png)no-repeat center; border-radius: 50%; font-size: 0; cursor: pointer;}
+
+
+/* footer */
+#footer {background: #000; color: #fff;padding: 0 20px;}
+#footer .inner {max-width: 1640px; padding: 100px 0;}
+#footer .footer_box {display: flex;justify-content: space-between;}
+#footer .footer_box .footer_link {display: flex;}
+#footer .footer_box .footer_link li {padding-right: 20px; }
+#footer .footer_box  .footer_sns {display: flex;}
+#footer .footer_box  .footer_sns li {padding-right: 25px;}
+#footer address {margin: 40px 0;}
+  #footer address>br {display: none;}
+  #footer address>br:nth-child(4) {display:block;}
+
+@media (max-width:1000px) {
+       #footer address>br {display: block;}
+}
+@media (max-width:870px) {
+      #footer .footer_box {flex-wrap: wrap;}
+      #footer .footer_box  .footer_sns {width: 100%; margin-top: 30px;}
+}
+@media (max-width:563px) {
+      #footer {font-size: 1.4rem;}
+      #footer .footer_box .footer_link li {padding-right: 15px; }
+      #footer .footer_box  .footer_sns li {padding-right: 20px;}
+}
+@media (max-width:500px) {
+       #footer {padding: 0 10px;}
+      #footer {font-size: 1.2rem;}
+      #footer .footer_box .footer_link li {padding-right: 15px; }
+      #footer .footer_box  .footer_sns li {padding-right: 20px;}
+}
+
+
+
+
+
+
+
+
+
+
